@@ -32,12 +32,15 @@ function onGalleryContainerClick(evt) {
     if (evt.target.nodeName !== 'IMG') {
         return;
     };
-    const instance = basicLightbox.create(`
+  const instance = basicLightbox.create(`
     <img src="${evt.target.dataset.source}" width="800" height="600">
-`)
+`, {
+    onShow: (instance) => window.addEventListener('keydown', onEscKeyPress),
+    onClose: (instance) => window.removeEventListener('keydown', onEscKeyPress)
+  })
+
     instance.show();
 
-    window.addEventListener('keydown', onEscKeyPress);
     function onEscKeyPress() {
     instance.close();
     };
@@ -45,9 +48,9 @@ function onGalleryContainerClick(evt) {
     
 };
 
-function onModalClose() {
-    window.removeEventListener('keydown', onEscKeyPress);
-};
+//function onModalClose() {
+    //window.removeEventListener('keydown', onEscKeyPress);
+//};
 
 //console.log(window)
 

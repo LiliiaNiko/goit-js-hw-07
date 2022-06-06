@@ -3,6 +3,8 @@ import { galleryItems } from './gallery-items.js';
 const galleryContainer = document.querySelector('.gallery');
 const itemsMarkup = createGalleryMarkup(galleryItems);
 
+
+
 function createGalleryMarkup(galleryItems) {
     return galleryItems.map(({ preview, original, description }) => {
         return `
@@ -14,22 +16,27 @@ function createGalleryMarkup(galleryItems) {
       title = "${description}"
     />
   </a>`}).join(' ');
+  
+  
 };
-
-console.log(itemsMarkup);
-
-galleryContainer.addEventListener('click', onGalleryContainerClick);
-
-
-
-function onGalleryContainerClick(evt) {
-    evt.preventDefault();
-    if (evt.target.nodeName !== 'IMG') {
-        return;
-    };
-    var lightbox = new SimpleLightbox('.gallery a',{ });
-};
-
 galleryContainer.insertAdjacentHTML('beforeend', itemsMarkup);
 galleryContainer.classList.add('.gallery');
+
+//console.log(itemsMarkup);
+galleryContainer.addEventListener('click', onGalleryContainerClick);
+
+function onGalleryContainerClick(evt) {
+  evt.preventDefault();
+  
+  if (evt.target.nodeName !== 'IMG') {
+    return;
+  }
+   let lightbox = new SimpleLightbox('.gallery a', { captionDelay: 250 });
+  
+
+};
+
+console.log(galleryContainer)
+
+
 console.log(galleryItems);

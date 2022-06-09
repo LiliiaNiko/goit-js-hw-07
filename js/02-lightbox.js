@@ -31,12 +31,10 @@ function onGalleryContainerClick(evt) {
   if (evt.target.nodeName !== 'IMG') {
     return;
   }
-   let lightbox = new SimpleLightbox('.gallery a', { captionDelay: 250 });
-  
-
 };
+new SimpleLightbox('.gallery a', { captionDelay: 250 });
 
-console.log(galleryContainer)
+//console.log(galleryContainer)
 
 
 console.log(galleryItems);
